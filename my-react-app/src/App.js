@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import Card from './Card.js'
+import Button from './Button.js'
+import Title from './Title.js'
+const people = [
+  {
+    name : "Chuck Borris",
+    image : "coming"
+  },
+  {
+    name : "Tom Shmoose",
+    image : "coming also"
+  }
+]
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {form : {}}
+    this.handleForm = this.handleForm.bind(this)
+  }
+  handleForm() {
+
+  }
+  render() {
+    return (
+      <React.Fragment>
+        <div className = "background">
+          <Title/>
+          <Card/>
+          <Button/>
+        </div>
+      </React.Fragment>
+    )
+  }
 }
+
+
 
 export default App;
