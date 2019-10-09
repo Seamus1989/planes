@@ -4,7 +4,6 @@ import React from 'react';
 function Button({handleNext, name, asynco, handleClickDrag}) {
   function handleClick(e) {
     handleClickDrag(e.target.value, e.target.name)
-    //handleNext(e.target.name, e.target.value)
   }
   return (
     <React.Fragment>

@@ -18,10 +18,6 @@ function Card({
   const [downX, setXDown] = useState(0)
   const [upX, setXUp] = useState(0)
   const [styler, setStyler] = useState({left : position, zIndex : zndex, marginTop : margin});
-  useEffect(() => {
-    // Reposition card stack on every reRender
-    setStyler({left : position, zIndex : zndex, marginTop : margin})
-  }, [zndex, margin, position])
   //////////////////////////////////////////////////////////////////////////////
   function transitionEnd(e) {
     if (e.propertyName !== "left" || (fly != "No" && fly != "Yes")) return;
@@ -39,14 +35,19 @@ function Card({
     e.persist()
     setXDown(downX => e.clientX)
   }
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    // Reposition card stack on every reRender
+    setStyler({left : position, zIndex : zndex, marginTop : margin})
+  }, [zndex, margin, position])
+  //////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
       let difference = downX - upX
       let fifthWindowWidth = window.innerWidth*(0.2)
       if (difference < 0 && fifthWindowWidth < -difference) {
-        console.log("right", difference, fifthWindowWidth)
         handleClickDrag("Yes", name)
       } else if (difference > 0 && fifthWindowWidth < difference) {
-        console.log("left", difference, fifthWindowWidth)
         handleClickDrag("No", name)
       }
   }, [upX])

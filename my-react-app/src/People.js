@@ -2,7 +2,7 @@ const people = [
   {
     name : "Chuck Borris",
     image : "./chuck.png",
-    skill : "Roundhouse Kick"
+    skill : "Roundhouse kick"
   },
   {
     name : "Arno Schwarz",
@@ -33,6 +33,21 @@ const people = [
     name : "Clint Nowood",
     image : './clint.png',
     skill : "Smith, Wesson and me"
+  },
+  {
+    name : "Cilla",
+    image : './cilla.png',
+    skill : "Wingwoman"
+  },
+  {
+    name : "Austin Powaz",
+    image : './Austin.png',
+    skill : "Kung Fu"
+  },
+  {
+    name : "Kenny Powres",
+    image : './kenny.png',
+    skill : "Arm like a canon"
   }
 ]
 
