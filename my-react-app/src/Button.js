@@ -1,21 +1,30 @@
 import React from 'react';
 
 
-
-
-class Button extends React.Component {
-  constructor(props) {
-    super(props)
+function Button({handleNext, name}) {
+  function handleClick(e) {
+    handleNext(e.target.name, e.target.value)
   }
-  render() {
-    return (
-      <React.Fragment>
-      <div className = "choices">
-        <button className = "cross">X</button>
-        <button className = "tick">&#10004;</button>
-      </div>
-      </React.Fragment>
-    )
-  }
+  return (
+    <React.Fragment>
+    <div className = "choices">
+      <button
+        className = "buttons"
+        style = {{gridColumn : 1, color : "red"}}
+        name = {name}
+        value = {"No"}
+        onClick = {(e) => handleClick(e)}
+        >&#10007;</button>
+
+      <button
+        className = "buttons"
+        style = {{gridColumn : 2, color :"green"}}
+        name = {name}
+        value = {"Yes"}
+        onClick = {(e) => handleClick(e)}
+        >&#10003;</button>
+    </div>
+    </React.Fragment>
+  )
 }
 export default Button;

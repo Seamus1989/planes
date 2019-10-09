@@ -1,31 +1,24 @@
+
+
 .App {
   text-align: center;
 }
 .background {
-  width : 70vw;
-  height : 80vh;
-  background-image : linear-gradient(to bottom, rgba(250, 145, 97, 0.7), rgba(247, 59, 28, 0.69));
-  margin : 55px auto auto auto;
+  width : 80vw;
+  height : 90vh;
+  background-image : linear-gradient(to bottom, rgba(250, 145, 97, 0.5), rgba(247, 59, 28, 0.49));
+  margin : 5vh auto auto auto;
   border-radius : 20px;
   overflow-y: hidden;
 }
-.card {
-  width : 180px;
-  height : 320px;
-  border-radius : 10px;
-  background-color : white;
-  margin : auto;
-  box-shadow: 3px 4px 4px rgb(202, 122, 82);
-}
+
 .title {
   margin : 15px auto 25px auto;
 }
 .title h2 {
   text-align: center;
+  color: #ffffff;
 }
-
-
-
 
 .choices {
   display : grid;
@@ -33,30 +26,87 @@
   grid-gap : 20px;
   justify-content: center;
   margin : 35px auto 25px auto;
+  position : absolute;
+  bottom : 60px;
+  left:0;
+  right:0;
 }
 
-
-.tick {
-  color :green;
-  font-size:20px;
+.buttons {
+  font-size:23px;
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border-radius:60%;
-  border : 1px solid green;
+  border-radius:  100%;
+  border : 1px solid rgb(202, 122, 82);
   grid-row:1;
-  grid-column:2;
+  text-align: center;
+  margin:auto;
   box-shadow: 2px 2px 3px rgb(202, 122, 82);
 }
-.cross {
-  color : red;
-  font-size:20px;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  border-radius:50%;
-  border : 1px solid red;
-  grid-row:1;
-  grid-column:1;
-  box-shadow: 2px 2px 3px rgb(202, 122, 82);
+.image {
+  width : auto;
+  height : 220px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.name, .skills {
+  text-align:center;
+  width : 140px;
+  margin:10px auto 15px auto;
+  height:max-content;
+  font-weight:400;
+}
+
+.card {
+  position:absolute;
+  width : 180px;
+  height : 350px;
+  border-radius : 10px;
+  background-color : white;
+  box-shadow: 3px 4px 4px rgb(202, 122, 82);
+  overflow-y: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+@media only screen and (max-height: 615px) {
+  body {
+    background-image : linear-gradient(to bottom, rgba(250, 145, 97, 0.5), rgba(247, 59, 28, 0.49));
+    border : 5px solid white;
+    border-radius : 20px;
+  }
+  .background {
+    background-image : none;
+  }
+  .card {
+    width : 150px;
+    height : 320px;
+  }
+  .image {
+    height : 190px;
+  }
+  .skills {
+   width : 120px;
+   font-size : 80%;
+ }
+ .choices {
+   grid-gap : 65vw;
+ }
+}
+
+@media only screen and (max-height: 500px) {
+  .card {
+    width : 130px;
+    height : 300px;
+  }
+  .image {
+    height : 160px;
+  }
+  .skills {
+   width : 100px;
+   font-size : 70%;
+ }
 }
