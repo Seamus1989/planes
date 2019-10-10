@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-const StyledModal = styled.div`
+const StyledCard = styled.div`
 position : relative;
 left: ${props => {
   switch (props.flyType) {
     case "Yes":
-      return "65vw";
+      return "75vw";
     case "No":
-      return "-65vw";
+      return "-75vw";
     default:
       return "0px";
     };
@@ -14,12 +14,12 @@ left: ${props => {
   transition: ${props => {
     switch (props.flyType) {
       case "Yes":
-        return `all linear 0.5s;`;
+        return `all linear 0.6s;`;
       case "No":
-        return `all linear 0.5s;`;
+        return `all linear 0.6s;`;
         default:
         return "";
       }
     }};
   `;
-export default StyledModal;
+export default StyledCard;

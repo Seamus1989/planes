@@ -1,52 +1,52 @@
 const people = [
   {
     name : "Chuck Borris",
-    image : "./chuck.png",
+    image : "./images/chuck.png",
     skill : "Roundhouse kick"
   },
   {
     name : "Arno Schwarz",
-    image : './arnie.png',
+    image : './images/arnie.png',
     skill : "Explosions"
   },
   {
     name : "Grandpa Wick",
-    image : './rick.png',
+    image : './images/rick.png',
     skill : "Intelligence"
   },
   {
     name : "Tommy Wise",
-    image : './tommy.png',
-    skill : "Football"
+    image : './images/tommy.png',
+    skill : "Throwing a football"
   },
   {
     name : "Lloyd Xmas",
-    image : './xmas.png',
+    image : './images/xmas.png',
     skill : "N/A"
   },
   {
     name : "Sylvester Sylvia",
-    image : './sylvo.png',
+    image : './images/sylvo.png',
     skill : "Crossbow"
   },
   {
     name : "Clint Nowood",
-    image : './clint.png',
+    image : './images/clint.png',
     skill : "Smith, Wesson and me"
   },
   {
     name : "Cilla",
-    image : './cilla.png',
+    image : './images/cilla.png',
     skill : "Wingwoman"
   },
   {
     name : "Austin Powaz",
-    image : './Austin.png',
-    skill : "Kung Fu"
+    image : './images/Austin.png',
+    skill : "Judo chop"
   },
   {
     name : "Kenny Powres",
-    image : './kenny.png',
+    image : './images/kenny.png',
     skill : "Arm like a canon"
   }
 ]

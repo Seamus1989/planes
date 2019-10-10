@@ -1,7 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import StyledModal from './bonusStyles.css.js'
+import StyledCard from './bonusStyles.css.js'
 // Styled - Components are gooooood
 
+
+/*
+
+Lots going on here,
+  name, image, skills - current person name handed down by parent
+  zndex, position, margin - create the stack like look by slightly displacing each card
+  animate - controls animation to the left or right (yes/no)
+  handleClickDrag - this function essentially changes props handed down and calls the card animation
+  handleNext - this then saves the outcome, puts the card to the back of the stack, and switches off animation 
+
+
+
+*/
 function Card({
   name,
   image,
@@ -28,12 +41,20 @@ function Card({
     };
   //////////////////////////////////////////////////////////////////////////////
   function dragEndFunc(e) {
-    e.persist()
+    e.persist();
     setXUp(upX => e.clientX)
   }
   function dragStartFunc(e) {
     e.persist()
     setXDown(downX => e.clientX)
+  }
+  function touchStartFunc(e) {
+    e.preventDefault();
+    setXDown(e.touches[0].clientX)
+  }
+  function touchEndFunc(e) {
+    e.preventDefault();
+    setXUp(e.changedTouches[e.changedTouches.length-1].clientX)
   }
   //////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////
@@ -44,10 +65,10 @@ function Card({
   //////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
       let difference = downX - upX
-      let fifthWindowWidth = window.innerWidth*(0.2)
-      if (difference < 0 && fifthWindowWidth < -difference) {
+      let fractionWindowWidth = window.innerWidth*(0.15)
+      if (difference < 0 && fractionWindowWidth < -difference) {
         handleClickDrag("Yes", name)
-      } else if (difference > 0 && fifthWindowWidth < difference) {
+      } else if (difference > 0 && fractionWindowWidth < difference) {
         handleClickDrag("No", name)
       }
   }, [upX])
@@ -63,7 +84,7 @@ function Card({
   //////////////////////////////////////////////////////////////////////////////
   return (
     <React.Fragment>
-    <StyledModal
+    <StyledCard
       onTransitionEnd = {transitionEnd}
       flyType = {fly}
     >
@@ -73,6 +94,8 @@ function Card({
           style = {styler}
           onDragStart = {dragStartFunc}
           onDragEnd =  {dragEndFunc}
+          onTouchStart = {touchStartFunc}
+          onTouchEnd = {touchEndFunc}
           >
         <div className = "name"><h4>{name}</h4></div>
         <img draggable = {true} className = "image" src = {require(`${image}`)} alt = "Chuck norris"></img>
@@ -80,7 +103,7 @@ function Card({
           <p className = "skills">Skills: {skills}</p>
         </div>
       </div>
-      </StyledModal>
+      </StyledCard>
     </React.Fragment>
   )
 }

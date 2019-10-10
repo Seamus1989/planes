@@ -11,12 +11,16 @@ import people from './People.js'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {form : {}, data : people, current : ([...people]).shift().name, index : 0}
+    this.state = {
+        form : {},
+        data : people,
+        current : ([...people]).shift().name,
+        buttonAnimation : null
+      }
     this.handleNext = this.handleNext.bind(this)
     this.handleClickDrag = this.handleClickDrag.bind(this)
   }
   handleNext(outcome, person) {
-    console.log(outcome, person)
     // This function
       // A) Sets animate to false after its animation has finished
     let newData = [...this.state.data]
@@ -27,33 +31,34 @@ class App extends React.Component {
     newData.push(newData.shift())
       // C) Saves the click event outcome as this.state.form
     let clickOutcomeObject = {}
-    clickOutcomeObject[outcome] = person;
+    clickOutcomeObject[person] = outcome;
     // Now also undo the animation so cards reStack
-
     this.setState((state) => ({
       data : newData,
-      index : state.index+1,
       current : ([...newData]).shift().name,
-      form : Object.assign(clickOutcomeObject, state.form)
+      form : Object.assign(state.form,clickOutcomeObject), // ORDER means latest selection overrights previous
+      buttonAnimation : null
     }))
   }
   handleClickDrag(outcome, person) {
     // This function copies data array, and adds a {animate = true} element to the top card if its been clicked yes/no
     // animate is then sent down and the child component renders animation if true, i.e animated off the stack
     // Child component then calls the above handleNext function
+    // also sends down animation to buttons
     let copy = [...this.state.data]
     let zeroth = copy.shift()
     zeroth['animate'] = outcome;
     copy.splice(0, 0, zeroth)
     this.setState((state) => ({
-      data : copy
+      data : copy,
+      buttonAnimation : outcome
     }))
   }
+  componentDidUpdate() {
+    console.log(this.state.form)
+  }
   render() {
-    let tempVariable = this.handleNext;
-    let anotherTempVariable = this.handleClickDrag
-    // Need to access this inside <Card>, create a temp variable
-    let cards = this.state.data.map(function(elem, index) {
+    let cards = this.state.data.map((elem, index) => {
       return (
         <Card
           name = {elem.name}
@@ -61,11 +66,11 @@ class App extends React.Component {
           skills = {elem.skill}
           key = {elem.name}
           zndex = {1000-`${index}`} // Order the stack
-          position = {5*`${index}`} // position the stack
-          margin = {2*`${index}`}
+          position = {3*`${index}`} // position the stack
+          margin = {1*`${index}`}
           animate = {elem['animate'] || false}
-          handleNext = {tempVariable}
-          handleClickDrag = {anotherTempVariable}
+          handleNext = {this.handleNext}
+          handleClickDrag = {this.handleClickDrag}
           />
       )
     })
@@ -79,6 +84,7 @@ class App extends React.Component {
           <Button
             handleClickDrag = {this.handleClickDrag} // hand down functions
             name = {this.state.current}   // hand down current person name to buttons
+            animation = {this.state.buttonAnimation}
             />
         </div>
       </React.Fragment>
