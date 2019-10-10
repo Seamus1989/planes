@@ -16,11 +16,11 @@ transform: ${props => {
   transition: ${props => {
     switch (props.bounce) {
       case "Yes":
-        return `all ease-in 0.3s;`;
+        return `all ease-in 0.2s;`;
       case "No":
-        return `all ease-in 0.3s;`;
+        return `all ease-in 0.2s;`;
       case "Undo":
-          return `all ease-in 0.2s;`;
+          return `all ease-in 0.1s;`;
         default:
         return "";
       }
