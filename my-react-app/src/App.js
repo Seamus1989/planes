@@ -1,11 +1,9 @@
 import React from "react"
-
 import "./App.css"
 import Card from "./Card"
 import Button from "./Button"
-import Title from "./Title.js"
-
-import people from "./People.js"
+import Title from "./Title"
+import people from "./People"
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +21,7 @@ class App extends React.Component {
   handleNext(outcome, person) {
     // This function
     // A) Sets animate to false after its animation has finished
+    // eslint-disable-next-line
     const newData = [...this.state.data]
     const zeroth = newData.shift()
     zeroth.animate = false
@@ -46,6 +45,7 @@ class App extends React.Component {
     // animate is then sent down and the child component renders animation if true, i.e animated off the stack
     // Child component then calls the above handleNext function
     // also sends down animation to buttons
+    // eslint-disable-next-line
     const copy = [...this.state.data]
     const zeroth = copy.shift()
     zeroth.animate = outcome
@@ -55,7 +55,9 @@ class App extends React.Component {
       buttonAnimation: outcome
     }))
   }
+
   render() {
+    // eslint-disable-next-line
     const cards = this.state.data.map((elem, index) => {
       return (
         <Card

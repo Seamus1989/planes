@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react"
 
-import StyledButton from './buttonBonus.css.js'
+import StyledButton from "./buttonBonus.css"
 /*
 Buttons
 Tick and a cross drawn with CSS.
@@ -14,12 +14,12 @@ animation - (null / yes / no) this then controls state animateYes and animateNo
 name - gives us access to current persons name - set by parents state.current
 
 */
-function Button({name, handleClickDrag, animation}) {
+function Button({ name, handleClickDrag, animation }) {
   const [animateYes, setAnimateYes] = useState(null)
   const [animateNo, setAnimateNo] = useState(null)
 
   function handleClick(yayOrNay) {
-    handleClickDrag(yayOrNay,name)
+    handleClickDrag(yayOrNay)
   }
 
   useEffect(() => {
@@ -31,34 +31,39 @@ function Button({name, handleClickDrag, animation}) {
       setAnimateYes("Undo")
       setAnimateNo("Undo")
     }
-  },[animation])
+  }, [animation])
   return (
-    <React.Fragment>
-    <div className = "choices">
-    <StyledButton
-      bounce = {animateNo}>
-      <span className="crossmark buttons2"
-            style = {{gridColumn : 1}}
-            onClick = {() => handleClick("No")}>
-        <div className="crossmark_circle"></div>
-        <div className="crossmark_stem"></div>
-        <div className="crossmark_kick"></div>
-      </span>
-      </StyledButton>
+    <>
+      <div className="choices">
+        <StyledButton bounce={animateNo}>
+          <span
+            className="crossmark buttons2"
+            style={{ gridColumn: 1 }}
+            role="button"
+            tabIndex={0}
+            onClick={() => handleClick("No")}
+          >
+            <div className="crossmark_circle" />
+            <div className="crossmark_stem" />
+            <div className="crossmark_kick" />
+          </span>
+        </StyledButton>
 
-
-      <StyledButton
-        bounce = {animateYes}>
-        <span className="checkmark buttons"
-              style = {{gridColumn : 2}}
-              onClick = {() => handleClick("Yes")}>
-          <div className="checkmark_circle"></div>
-          <div className="checkmark_stem"></div>
-          <div className="checkmark_kick"></div>
-        </span>
-      </StyledButton>
-    </div>
-    </React.Fragment>
+        <StyledButton bounce={animateYes}>
+          <span
+            className="checkmark buttons"
+            style={{ gridColumn: 2 }}
+            onClick={() => handleClick("Yes")}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="checkmark_circle" />
+            <div className="checkmark_stem" />
+            <div className="checkmark_kick" />
+          </span>
+        </StyledButton>
+      </div>
+    </>
   )
 }
-export default Button;
+export default Button
