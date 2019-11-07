@@ -10,19 +10,6 @@ Lots going on here,
   animate - controls animation to the left or right (yes/no)
   handleClickDrag - this function essentially changes props handed down and calls the card animation
   handleNext - this then saves the outcome, puts the card to the back of the stack, and switches off animation
-
-  MyComponent.propTypes = {
-    // You can declare that a prop is a specific JS primitive. By default, these
-    // are all optional.
-    optionalArray: PropTypes.array,
-    optionalBool: PropTypes.bool,
-    optionalFunc: PropTypes.func,
-    optionalNumber: PropTypes.number,
-    optionalObject: PropTypes.object,
-    optionalString: PropTypes.string,
-    optionalSymbol: PropTypes.symbol,
-
-
 */
 Card.propTypes = {
   name: PropTypes.string.isRequired,
@@ -31,7 +18,7 @@ Card.propTypes = {
   zndex: PropTypes.number.isRequired,
   position: PropTypes.number.isRequired,
   margin: PropTypes.number.isRequired,
-  animate: PropTypes.bool.isRequired,
+  animate: PropTypes.string.isRequired,
   handleNext: PropTypes.func.isRequired,
   handleClickDrag: PropTypes.func.isRequired
 }
@@ -57,7 +44,7 @@ function Card({
   })
   // ////////////////////////////////////////////////////////////////////////////
   function transitionEnd(e) {
-    if (e.propertyName !== "left" || (fly != "No" && fly != "Yes")) return
+    if (e.propertyName !== "left" || (fly !== "No" && fly !== "Yes")) return
     if (fly === "Yes" || fly === "No") {
       // after animation ends, call parent handleNext function
       handleNext(animate, name)
@@ -101,7 +88,7 @@ function Card({
     // Parent hands down animate, this will/wont cause an animation
     if (animate) {
       makeFly(animate)
-    } else if (animate === false) {
+    } else if (animate === "initial") {
       makeFly("default")
     }
   }, [fly, animate])

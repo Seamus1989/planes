@@ -4,21 +4,22 @@ import StyledButton from "./buttonBonusCSS"
 /*
 Buttons
 Tick and a cross drawn with CSS.
-Receive name / animation prop from App.js and function handleClickDrag.
+Receive name / buttonAnimation prop from App.js and function handleClickDrag.
 
 
 handleClickDrag - Where parent handles next card etc.
-animation - (null / yes / no) this then controls state animateYes and animateNo
+buttonAnimation - (null / yes / no) this then controls state animateYes and animateNo
             which animate Yes/No buttons respectively
 
 name - gives us access to current persons name - set by parents state.current
 
 */
 Button.propTypes = {
-  animation: PropTypes.bool.isRequired,
+  buttonAnimation: PropTypes.string.isRequired,
   handleClickDrag: PropTypes.func.isRequired
 }
-function Button({ name, handleClickDrag, animation }) {
+function Button({ handleClickDrag, buttonAnimation }) {
+
   const [animateYes, setAnimateYes] = useState(null)
   const [animateNo, setAnimateNo] = useState(null)
 
@@ -27,15 +28,15 @@ function Button({ name, handleClickDrag, animation }) {
   }
 
   useEffect(() => {
-    if (animation === "Yes") {
+    if (buttonAnimation === "Yes") {
       setAnimateYes("Yes")
-    } else if (animation === "No") {
+    } else if (buttonAnimation === "No") {
       setAnimateNo("No")
-    } else if (animation === null) {
+    } else if (buttonAnimation === null) {
       setAnimateYes("Undo")
       setAnimateNo("Undo")
     }
-  }, [animation])
+  }, [buttonAnimation])
   return (
     <>
       <div className="choices">

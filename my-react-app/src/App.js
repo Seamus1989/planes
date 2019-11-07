@@ -12,7 +12,7 @@ class App extends React.Component {
       form: {},
       data: people,
       current: [...people].shift().name,
-      buttonAnimation: null
+      buttonAnimation: ""
     }
     this.handleNext = this.handleNext.bind(this)
     this.handleClickDrag = this.handleClickDrag.bind(this)
@@ -36,7 +36,7 @@ class App extends React.Component {
       data: newData,
       current: [...newData].shift().name,
       form: Object.assign(state.form, clickOutcomeObject), // ORDER means latest selection overrights previous
-      buttonAnimation: null
+      buttonAnimation: ""
     }))
   }
 
@@ -68,7 +68,7 @@ class App extends React.Component {
           zndex={1000 - `${index}`} // Order the stack
           position={3 * `${index}`} // position the stack
           margin={1 * `${index}`}
-          animate={elem.animate || false}
+          animate={elem.animate || "initial"}
           handleNext={this.handleNext}
           handleClickDrag={this.handleClickDrag}
         />
@@ -81,7 +81,8 @@ class App extends React.Component {
           <div className="card-stack">{cards}</div>
           <Button
             handleClickDrag={this.handleClickDrag} // hand down functions
-            animation={this.state.buttonAnimation}
+            name={this.state.current} // hand down current person name to buttons
+            buttonAnimation={this.state.buttonAnimation}
           />
         </div>
       </>
@@ -94,8 +95,5 @@ export default App
 /*
 
 
-So if animate is true,
-then do animation,
-then go back up the stack and call whatever function
 
 */
