@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-import StyledCard from "./bonusStyles.css.js"
-// Styled - Components are gooooood
+import PropTypes from "prop-types"
+import StyledCard from "./bonusStylesCSS"
 
 /*
 
@@ -11,9 +11,30 @@ Lots going on here,
   handleClickDrag - this function essentially changes props handed down and calls the card animation
   handleNext - this then saves the outcome, puts the card to the back of the stack, and switches off animation
 
+  MyComponent.propTypes = {
+    // You can declare that a prop is a specific JS primitive. By default, these
+    // are all optional.
+    optionalArray: PropTypes.array,
+    optionalBool: PropTypes.bool,
+    optionalFunc: PropTypes.func,
+    optionalNumber: PropTypes.number,
+    optionalObject: PropTypes.object,
+    optionalString: PropTypes.string,
+    optionalSymbol: PropTypes.symbol,
 
 
 */
+Card.propTypes = {
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  skills: PropTypes.string.isRequired,
+  zndex: PropTypes.number.isRequired,
+  position: PropTypes.number.isRequired,
+  margin: PropTypes.number.isRequired,
+  animate: PropTypes.bool.isRequired,
+  handleNext: PropTypes.func.isRequired,
+  handleClickDrag: PropTypes.func.isRequired
+}
 function Card({
   name,
   image,
@@ -36,7 +57,7 @@ function Card({
   })
   // ////////////////////////////////////////////////////////////////////////////
   function transitionEnd(e) {
-    if (e.propertyName !== "left" || (fly !== "No" && fly !== "Yes")) return
+    if (e.propertyName !== "left" || (fly != "No" && fly != "Yes")) return
     if (fly === "Yes" || fly === "No") {
       // after animation ends, call parent handleNext function
       handleNext(animate, name)
@@ -45,11 +66,11 @@ function Card({
   // ////////////////////////////////////////////////////////////////////////////
   function dragEndFunc(e) {
     e.persist()
-    setXUp(upX => e.clientX)
+    setXUp(e.clientX)
   }
   function dragStartFunc(e) {
     e.persist()
-    setXDown(downX => e.clientX)
+    setXDown(e.clientX)
   }
   function touchStartFunc(e) {
     e.preventDefault()
@@ -74,7 +95,7 @@ function Card({
     } else if (difference > 0 && fractionWindowWidth < difference) {
       handleClickDrag("No")
     }
-  }, [downX, handleClickDrag, upX])
+  }, [upX])
   // ////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     // Parent hands down animate, this will/wont cause an animation
@@ -103,7 +124,7 @@ function Card({
           <img
             draggable
             className="image"
-            src={require(`image`)}
+            src={require(`${image}`)}
             alt="Chuck norris"
           />
           <div>

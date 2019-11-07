@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-
-import StyledButton from "./buttonBonus.css"
+import PropTypes from "prop-types"
+import StyledButton from "./buttonBonusCSS"
 /*
 Buttons
 Tick and a cross drawn with CSS.
@@ -14,6 +14,10 @@ animation - (null / yes / no) this then controls state animateYes and animateNo
 name - gives us access to current persons name - set by parents state.current
 
 */
+Button.propTypes = {
+  animation: PropTypes.bool.isRequired,
+  handleClickDrag: PropTypes.func.isRequired
+}
 function Button({ name, handleClickDrag, animation }) {
   const [animateYes, setAnimateYes] = useState(null)
   const [animateNo, setAnimateNo] = useState(null)

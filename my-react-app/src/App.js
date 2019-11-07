@@ -81,7 +81,6 @@ class App extends React.Component {
           <div className="card-stack">{cards}</div>
           <Button
             handleClickDrag={this.handleClickDrag} // hand down functions
-            name={this.state.current} // hand down current person name to buttons
             animation={this.state.buttonAnimation}
           />
         </div>
