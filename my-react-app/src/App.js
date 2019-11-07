@@ -41,7 +41,16 @@ class App extends React.Component {
     }));
   }
 
-  handleClickDrag(outcome) {
+
+
+
+
+
+
+
+
+  handleClickDrag(outcome) 
+  {
     // This function copies data array, and adds a {animate = true} element to the top card if its been clicked yes/no
     // animate is then sent down and the child component renders animation if true, i.e animated off the stack
     // Child component then calls the above handleNext function
